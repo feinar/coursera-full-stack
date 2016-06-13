@@ -51,18 +51,20 @@
            <div class="col-xs-9 col-xs-offset-1">
             <h4>
              <strong>Customer Comments</strong> Sort by: <input ng-model="orderingCriteria"/> 
-           </h4>
-           <blockquote ng-repeat="dishComment in dish.comments | orderBy : orderingCriteria">
-            <p>{{dishComment.rating}} Stars</p>
-            <p>{{dishComment.comment}}</p>
-            <footer>{{dishComment.author}}, {{dishComment.date | date}}</footer>
-          </blockquote>
-
+            </h4>
+            <blockquote ng-repeat="dishComment in dish.comments | orderBy : orderingCriteria">
+              <p>{{dishComment.rating}} Stars</p>
+              <p>{{dishComment.comment}}</p>
+              <footer>{{dishComment.author}}, {{dishComment.date | date}}</footer>
+            </blockquote>
+          </div>
           <div class="col-xs-9 col-xs-offset-1" ng-controller="DishCommentController">
-            <ul class="list-unstyled">
-              <p>Task 3: Here you include the code to show the live preview of the comment</p>
-              <p>The comment should be shown only when the form contains valid
-              information and is not pristine</p>
+            <ul class="list-unstyled" ng-show="!commentForm.$invalid && !commentForm.author.$pristine && !commentForm.comment.$pristine">
+              <blockquote>
+                <p>{{comment.rating}} Stars</p>
+                <p>{{comment.comment}}</p>
+                <footer>{{newComment.author}}, {{newComment.date | date}}</footer>
+              </blockquote>
             </ul>
             <form class="form-horizontal" name="commentForm" 
                     ng-submit="submitComment()" novalidate>                     
@@ -96,11 +98,10 @@
                   </div>
               </div>
 
-              <p>Task 2: You need to validate that the user name and comments are entered</p>
             </form>
           </div>
 
-        </div>
+        
       </div>
 
     </div>
