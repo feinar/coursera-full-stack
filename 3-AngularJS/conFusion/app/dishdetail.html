@@ -28,7 +28,7 @@
     <body>
 
       <div class="container">
-        <div class="row row-content" ng-controller="DishDetailController" ng-init="">
+        <div class="row row-content" ng-controller="DishDetailController">
           <div class="col-xs-12">
             <ul class="media-list">
               <li class="media">
@@ -64,9 +64,36 @@
               <p>The comment should be shown only when the form contains valid
               information and is not pristine</p>
             </ul>
-            <form class="form-horizontal" name="commentForm"
-                    ng-submit="submitComment()" novalidate>
-              <p>Task 1: Design the form to submit the comments</p>
+            <form class="form-horizontal" name="commentForm" 
+                    ng-submit="submitComment()" novalidate>                     
+              <div class="form-group">
+                <label for="author" class="col-sm-2 control-label">Your Name:</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="author" name="author" placeholder="Enter Your Name" ng-model="newComment.author">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="rating" class="col-sm-2 control-label">Number Of Stars</label>
+                <div class="col-sm-10" name="rating">
+                  <label class="radio-inline"><input type="radio" ng-model="newComment.rating" ng-value="1"> 1</label>
+                  <label class="radio-inline"><input type="radio" ng-model="newComment.rating" ng-value="2"> 2</label>
+                  <label class="radio-inline"><input type="radio" ng-model="newComment.rating" ng-value="3"> 3</label>
+                  <label class="radio-inline"><input type="radio" ng-model="newComment.rating" ng-value="4"> 4</label>
+                  <label class="radio-inline"><input type="radio" ng-model="newComment.rating" ng-value="5"> 5</label>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="name" class="col-sm-2 control-label">Comment:</label>
+                <div class="col-sm-10">
+                  <textarea class="form-control" id="comment" name="comment" rows="12" ng-model="newComment.comment"></textarea>
+                </div>
+              </div>
+              <div class="form-group">
+                  <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-primary">Submit comment</button>
+                  </div>
+              </div>
+
               <p>Task 2: You need to validate that the user name and comments are entered</p>
             </form>
           </div>
