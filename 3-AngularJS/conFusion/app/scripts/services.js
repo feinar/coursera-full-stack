@@ -23,20 +23,18 @@ angular.module('confusionApp')
             };
 
 
-            this.getPromotion = function () {
+            this.getPromotion = function () {            
             
                 return $resource(baseURL+"promotions/:id",null,  {'update':{method:'PUT' }});
-                
+
             };
                 
     
                         
         }])
 
-        .factory('corporateFactory', function() {
-    
-            var corpfac = {};
-    
+        .service('corporateFactory', ['$resource', 'baseURL', function($resource,baseURL) {   
+           
             var leadership = [
                 {
                     name: "Peter Pan",
@@ -68,25 +66,13 @@ angular.module('confusionApp')
                 }
                 
             ];
-     
-            // Implement two functions, one named getLeaders,
-            // the other named getLeader(index)
-            // Remember this is a factory not a service
-            
-            corpfac.getLeaders = function(){
-                
-                return leadership;
-                
-            };
-
-            corpfac.getLeader = function (index) {
-
-              return leadership[index];
-
-            };
-
-            return corpfac;    
     
-        })
+            this.getLeaders = function(){
+                
+                return $resource(baseURL+"leadership/:id",null,  {'update':{method:'PUT' }});
+                
+            };              
+                            
+        }])
 
 ;

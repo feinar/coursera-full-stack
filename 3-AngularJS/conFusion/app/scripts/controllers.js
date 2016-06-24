@@ -123,7 +123,18 @@ angular.module('confusionApp')
 
         .controller('AboutController', ['$scope', 'corporateFactory', function($scope, corporateFactory) {
             
-            $scope.leaders = corporateFactory.getLeaders();
+            $scope.showLeaders = false;
+            corporateFactory.getLeaders().query(
+                function(response) {
+                    $scope.leaders = response;
+                    $scope.showLeaders = true;
+                },
+                function(response) {
+                    $scope.message = "Error: "+response.status + " " + response.statusText;
+                }
+            );
+
+
         }])
 
         .controller('IndexController', ['$scope', 'menuFactory', 'corporateFactory', function($scope, menuFactory, corporateFactory) {
@@ -154,7 +165,18 @@ angular.module('confusionApp')
                 }
             );          
 
-            $scope.chef = corporateFactory.getLeader(3);
+            $scope.showChef = false;
+            $scope.chef = corporateFactory.getLeaders().get({id:3})
+            .$promise.then(
+                function(response){
+                    $scope.chef = response;
+                    $scope.showChef = true;
+                },
+                function(response) {
+                    $scope.message = "Error: "+response.status + " " + response.statusText;
+                }
+            ); 
+
         }])
 
 ;
