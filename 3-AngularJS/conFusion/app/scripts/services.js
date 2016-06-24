@@ -16,17 +16,18 @@ angular.module('confusionApp')
                 
             ];
     
-                this.getDishes = function(){
-                    
-                    return $resource(baseURL+"dishes/:id",null,  {'update':{method:'PUT' }});
-                    
-                };
-    
-    
-                this.getPromotion = function (index) {
-                    
-                    return promotions[index];
-                };
+            this.getDishes = function(){
+                
+                return $resource(baseURL+"dishes/:id",null,  {'update':{method:'PUT' }});
+                
+            };
+
+
+            this.getPromotion = function () {
+            
+                return $resource(baseURL+"promotions/:id",null,  {'update':{method:'PUT' }});
+                
+            };
                 
     
                         

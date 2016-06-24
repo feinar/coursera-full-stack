@@ -127,11 +127,22 @@ angular.module('confusionApp')
         }])
 
         .controller('IndexController', ['$scope', 'menuFactory', 'corporateFactory', function($scope, menuFactory, corporateFactory) {
-            
-            $scope.promotion = menuFactory.getPromotion(0);
+                        
+            $scope.message="Loading ...";
+
+            $scope.showPromotion = false;
+            $scope.promotion = menuFactory.getPromotion().get({id:0})
+            .$promise.then(
+                function(response){
+                    $scope.promotion = response;
+                    $scope.showPromotion = true;
+                },
+                function(response) {
+                    $scope.message = "Error: "+response.status + " " + response.statusText;
+                }
+            ); 
             
             $scope.showDish = false;
-            $scope.message="Loading ...";
             $scope.dish = menuFactory.getDishes().get({id:0})
             .$promise.then(
                 function(response){
