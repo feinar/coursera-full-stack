@@ -9,3 +9,8 @@
 /3-AngularJS/angular-example/dist/
 /3-AngularJS/angular-example/.tmp/
 
+/4-Ionic/conFusion/bower_components/
+/4-Ionic/conFusion/node_modules/
+/4-Ionic/conFusion/dist/
+/4-Ionic/conFusion/.tmp/
+/4-Ionic/json-server/public
