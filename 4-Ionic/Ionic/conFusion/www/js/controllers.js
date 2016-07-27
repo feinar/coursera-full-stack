@@ -41,8 +41,9 @@ angular.module('conFusion.controllers', [])
   };
 })
 
-.controller('MenuController', ['$scope', 'menuFactory', function($scope, menuFactory) {
+.controller('MenuController', ['$scope', 'menuFactory', 'baseURL',  function($scope, menuFactory, baseURL) {
     
+    $scope.baseURL = baseURL;
     $scope.tab = 1;
     $scope.filtText = '';
     $scope.showDetails = false;
@@ -110,8 +111,9 @@ angular.module('conFusion.controllers', [])
     };
 }])
 
-.controller('DishDetailController', ['$scope', '$stateParams', 'menuFactory', function($scope, $stateParams, menuFactory) {
+.controller('DishDetailController', ['$scope', '$stateParams', 'menuFactory', 'baseURL', function($scope, $stateParams, menuFactory, baseURL) {
     
+    $scope.baseURL = baseURL;
     $scope.showDish = false;
     $scope.message="Loading ...";
     $scope.dish = menuFactory.getDishes().get({id:parseInt($stateParams.id,10)})
@@ -126,8 +128,8 @@ angular.module('conFusion.controllers', [])
     );        
 }])
 
-.controller('DishCommentController', ['$scope', 'menuFactory', function($scope,menuFactory) {
-    
+.controller('DishCommentController', ['$scope', 'menuFactory', function($scope, menuFactory) {    
+
     //Step 1: Create a JavaScript object to hold the comment from the form
     $scope.newComment = {author: "", rating: 5, comment: "", date: new Date().toISOString()};
     
